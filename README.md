@@ -3,15 +3,15 @@
 ## Methods
 ### run(cmd:_str_, capture_error:_bool_=False)->_str_:
 >Runs a windows command on the remote server.
->- Args:
->   - **cmd** *(str)*: Windows command to be executed.
->   - **capture_error** *(bool)*: **False** by default, if set to **True**, any error resulted from the execution of the windows command is raised instead.
->
->- Returns
->   - **str**: Standard out or standard error in case of error when **capture_error** is **True**.
->
->- Raises
->  - **OSError**: Raised when the resulted status code is different than **0**_(zero)_ and **capture_error** is **False**.
+- Args:
+   - **cmd** *(str)*: Windows command to be executed.
+   - **capture_error** *(bool)*: **False** by default, if set to **True**, any error resulted from the execution of the windows command is raised instead.
+
+- Returns
+   - **str**: Standard out or standard error in case of error when **capture_error** is **True**.
+
+- Raises
+  - **OSError**: Raised when the resulted status code is different than **0**_(zero)_ and **capture_error** is **False**.
 
 ### powershell(script:_str_, capture_error:_bool_=False)->_str_:
 > Executes a powershell script on the remote server.
