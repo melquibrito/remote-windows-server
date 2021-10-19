@@ -399,7 +399,7 @@
       - Raises
          - **OSError**: Raised in case of error.
 
-### bios(*properties:_str_, **kwargs)->dict: 
+### bios(\*properties:_str_, \*\*kwargs)->_dict_: 
 > Returns the remote server bios data.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
@@ -449,7 +449,7 @@
 - Raises
    - **OSError**: Raised in case of error.
 
-### desktop_settings(*properties:_str_, **kwargs)->list: 
+### desktop_settings(\*properties:_str_, \*\*kwargs)->_list_: 
 > Returns the remote server descktop settings data.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
@@ -490,7 +490,7 @@
 - Raises
    - **OSError**: Raised in case of error.
 
-### computer_system(*properties:_str_,**kwargs)->dict: 
+### computer_system(\*properties:_str_,\*\*kwargs)->_dict_: 
 > Returns the remote server computer system data.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
@@ -573,7 +573,7 @@
 - Raises
    - **OSError**: Raised in case of error.
 
-### operating_system(*properties:_str_, **kwargs)->dict: 
+### operating_system(\*properties:_str_, \*\*kwargs)->_dict_: 
 > Returns the remote server operating system data.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
@@ -654,7 +654,7 @@
 - Raises
    - **OSError**: Raised in case of error.
 
-### logon_session(*properties:_str_, **kwargs)->dict: 
+### logon_session(\*properties:_str_, \*\*kwargs)->_dict_: 
 > Returns the remote server logon session data.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
@@ -682,7 +682,7 @@
 - Raises
    - **OSError**: Raised in case of error.
 
-### local_time(*properties, **kwargs)->dict: 
+### local_time(\*properties:_str_, \*\*kwargs)->_dict_: 
 > Returns the current local time data on the remote server.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
@@ -711,7 +711,7 @@
 - Raises
    - **OSError**: Raised in case of error.
 
-### processor(*properties, **kwargs)->dict: 
+### processor(\*properties:_str_, \*\*kwargs)->_dict_: 
 > Returns the remote server processor data.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
@@ -787,7 +787,7 @@
 - Raises
    - **OSError**: Raised in case of error.
 
-### volumes(*properties, **kwargs)->list: 
+### volumes(\*properties:_str_, \*\*kwargs)->_list_: 
 > Returns a list of all remote server volumes data.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
@@ -847,7 +847,7 @@
 - Raises
    - **OSError**: Raised in case of error.
 
-### retrieve_data_from_ps_list(stdout:str)->list: 
+### retrieve_data_from_ps_list(stdout:_str_)->_list_: 
 > Static method that converts standard powershell list to python list of dictionaries.
 - Args
    - **stdout** _(str)_: Powershell list-formatted standard out.
