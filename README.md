@@ -45,9 +45,9 @@
 * [computer_system](#computer_systempropertiesstrkwargs-dict)
 * [operating_system](#operating_systempropertiesstr-kwargs-dict)
 * [logon_session](#logon_sessionpropertiesstr-kwargs-dict)
-* [local_time](#local_timeproperties-kwargs-dict)
-* [processor](#processorproperties-kwargs-dict)
-* [volumes](#volumesproperties-kwargs-list)
+* [local_time](#local_timepropertiesstr-kwargs-dict)
+* [processor](#processorpropertiesstr-kwargs-dict)
+* [volumes](#volumespropertiesstr-kwargs-list)
 * [retrieve_data_from_ps_list](#retrieve_data_from_ps_liststdoutstr-list)
 
 ### run(cmd:_str_, capture_error:_bool_=False)->_str_:
