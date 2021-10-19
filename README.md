@@ -1,5 +1,8 @@
 # Windows Remote Server Library
 
+## Dependencies
+- **winrm**: This class relies on the usage of winrm to connect to remote servers and run commands and powershell scripts on them.
+
 ## Methods
 ### run(cmd:_str_, capture_error:_bool_=False)->_str_:
 >Runs a windows command on the remote server.
@@ -350,7 +353,7 @@
       - Raises
          - **OSError**: Raised in case of error.
 
-### bios(*properties:str, **kwargs)->dict: 
+### bios(*properties:_str_, **kwargs)->dict: 
 > Returns the remote server bios data.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
@@ -400,7 +403,7 @@
 - Raises
    - **OSError**: Raised in case of error.
 
-### desktop_settings(*properties, **kwargs)->list: 
+### desktop_settings(*properties:_str_, **kwargs)->list: 
 > Returns the remote server descktop settings data.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
@@ -441,23 +444,362 @@
 - Raises
    - **OSError**: Raised in case of error.
 
-### computer_system(*properties,**kwargs)->dict: 
-Returns the remote server computer system data.
+### computer_system(*properties:_str_,**kwargs)->dict: 
+> Returns the remote server computer system data.
+- Args
+   - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
+   - **\*\*kwargs**: Arbitrary keyword arguments. 
 
-### operating_system(*properties, **kwargs)->dict: 
-Returns the remote server operating system data.
+- Keyword Args
+   - **raw** _(bool)_: Used to define whether or not to return the raw standard out instead of the default dictionary.
 
-### logon_session(*properties, **kwargs)->dict: 
-Returns the remote server logon session data.
+- Returns
+   - **dict**: Computer system data. The standard out _string_ may be returned instead if **raw** is found in the _keyword arguments_ and equivalent to **True**.
+      * AdminPasswordStatus
+      * BootupState
+      * ChassisBootupState
+      * KeyboardPasswordStatus
+      * PowerOnPasswordStatus
+      * PowerSupplyState
+      * PowerState
+      * FrontPanelResetStatus
+      * ThermalState
+      * Status
+      * Name
+      * PowerManagementCapabilities
+      * PowerManagementSupported
+      * Caption
+      * Description
+      * InstallDate
+      * CreationClassName
+      * NameFormat
+      * PrimaryOwnerContact
+      * PrimaryOwnerName
+      * Roles
+      * InitialLoadInfo
+      * LastLoadInfo
+      * ResetCapability
+      * AutomaticManagedPagefile
+      * AutomaticResetBootOption
+      * AutomaticResetCapability
+      * BootOptionOnLimit
+      * BootOptionOnWatchDog
+      * BootROMSupported
+      * BootStatus
+      * ChassisSKUNumber
+      * CurrentTimeZone
+      * DaylightInEffect
+      * DNSHostName
+      * Domain
+      * DomainRole
+      * EnableDaylightSavingsTime
+      * HypervisorPresent
+      * InfraredSupported
+      * Manufacturer
+      * Model
+      * NetworkServerModeEnabled
+      * NumberOfLogicalProcessors
+      * NumberOfProcessors
+      * OEMLogoBitmap
+      * OEMStringArray
+      * PartOfDomain
+      * PauseAfterReset
+      * PCSystemType
+      * PCSystemTypeEx
+      * ResetCount
+      * ResetLimit
+      * SupportContactDescription
+      * SystemFamily
+      * SystemSKUNumber
+      * SystemStartupDelay
+      * SystemStartupOptions
+      * SystemStartupSetting
+      * SystemType
+      * TotalPhysicalMemory
+      * UserName
+      * WakeUpType
+      * Workgroup
+      * PSComputerName
+      * CimClass
+      * CimInstanceProperties
+      * CimSystemProperties
+
+- Raises
+   - **OSError**: Raised in case of error.
+
+### operating_system(*properties:_str_, **kwargs)->dict: 
+> Returns the remote server operating system data.
+- Args
+   - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
+   - **\*\*kwargs**: Arbitrary keyword arguments. 
+
+- Keyword Args
+   - **raw** _(bool)_: Used to define whether or not to return the raw standard out instead of the default dictionary.
+
+- Returns
+   - **dict**: Operating system data. The standard out _string_ may be returned instead if **raw** is found in the _keyword arguments_ and equivalent to **True**.
+      * FreePhysicalMemory
+      * FreeSpaceInPagingFiles
+      * FreeVirtualMemory
+      * Caption
+      * Description
+      * InstallDate
+      * CreationClassName
+      * CSCreationClassName
+      * CSName
+      * CurrentTimeZone
+      * Distributed
+      * LastBootUpTime
+      * LocalDateTime
+      * MaxNumberOfProcesses
+      * MaxProcessMemorySize
+      * NumberOfLicensedUsers
+      * NumberOfProcesses
+      * NumberOfUsers
+      * OSType
+      * OtherTypeDescription
+      * SizeStoredInPagingFiles
+      * TotalSwapSpaceSize
+      * TotalVirtualMemorySize
+      * TotalVisibleMemorySize
+      * Version
+      * BootDevice
+      * BuildNumber
+      * BuildType
+      * CodeSet
+      * CountryCode
+      * CSDVersion
+      * DataExecutionPrevention_32BitApplications
+      * DataExecutionPrevention_Available
+      * DataExecutionPrevention_Drivers
+      * DataExecutionPrevention_SupportPolicy
+      * Debug
+      * EncryptionLevel
+      * ForegroundApplicationBoost
+      * LargeSystemCache
+      * Locale
+      * Manufacturer
+      * MUILanguages
+      * OperatingSystemSKU
+      * Organization
+      * OSArchitecture
+      * OSLanguage
+      * OSProductSuite
+      * PAEEnabled
+      * PlusProductID
+      * PlusVersionNumber
+      * PortableOperatingSystem
+      * Primary
+      * ProductType
+      * RegisteredUser
+      * SerialNumber
+      * ServicePackMajorVersion
+      * ServicePackMinorVersion
+      * SuiteMask
+      * SystemDevice
+      * SystemDirectory
+      * SystemDrive
+      * WindowsDirectory
+      * PSComputerName
+      * CimClass
+      * CimInstanceProperties
+      * CimSystemProperties
+
+- Raises
+   - **OSError**: Raised in case of error.
+
+### logon_session(*properties:_str_, **kwargs)->dict: 
+> Returns the remote server logon session data.
+- Args
+   - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
+   - **\*\*kwargs**: Arbitrary keyword arguments. 
+
+- Keyword Args
+   - **raw** _(bool)_: Used to define whether or not to return the raw standard out instead of the default dictionary.
+
+- Returns
+   - **dict**: Logon session data. The standard out _string_ may be returned instead if **raw** is found in the _keyword arguments_ and equivalent to **True**.
+      * Caption
+      * Description
+      * InstallDate
+      * Name
+      * Status
+      * StartTime
+      * AuthenticationPackage
+      * LogonId
+      * LogonType
+      * PSComputerName
+      * CimClass
+      * CimInstanceProperties
+      * CimSystemProperties
+
+- Raises
+   - **OSError**: Raised in case of error.
 
 ### local_time(*properties, **kwargs)->dict: 
-Returns the current local time data on the remote server.
+> Returns the current local time data on the remote server.
+- Args
+   - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
+   - **\*\*kwargs**: Arbitrary keyword arguments. 
+
+- Keyword Args
+   - **raw** _(bool)_: Used to define whether or not to return the raw standard out instead of the default dictionary.
+
+- Returns
+   - **dict**: Local time data. The standard out _string_ may be returned instead if **raw** is found in the _keyword arguments_ and equivalent to **True**.
+      * Day
+      * DayOfWeek
+      * Hour
+      * Milliseconds
+      * Minute
+      * Month
+      * Quarter
+      * Second
+      * WeekInMonth
+      * Year
+      * PSComputerName
+      * CimClass
+      * CimInstanceProperties
+      * CimSystemProperties
+
+- Raises
+   - **OSError**: Raised in case of error.
 
 ### processor(*properties, **kwargs)->dict: 
-Returns the remote server processor data.
+> Returns the remote server processor data.
+- Args
+   - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
+   - **\*\*kwargs**: Arbitrary keyword arguments. 
+
+- Keyword Args
+   - **raw** _(bool)_: Used to define whether or not to return the raw standard out instead of the default dictionary.
+
+- Returns
+   - **dict**: Processor data. The standard out _string_ may be returned instead if **raw** is found in the _keyword arguments_ and equivalent to **True**.
+      * Availability
+      * CpuStatus
+      * CurrentVoltage
+      * DeviceID
+      * ErrorCleared
+      * ErrorDescription
+      * LastErrorCode
+      * LoadPercentage
+      * Status
+      * StatusInfo
+      * AddressWidth
+      * DataWidth
+      * ExtClock
+      * L2CacheSize
+      * L2CacheSpeed
+      * MaxClockSpeed
+      * PowerManagementSupported
+      * ProcessorType
+      * Revision
+      * SocketDesignation
+      * Version
+      * VoltageCaps
+      * Caption
+      * Description
+      * InstallDate
+      * Name
+      * ConfigManagerErrorCode
+      * ConfigManagerUserConfig
+      * CreationClassName
+      * PNPDeviceID
+      * PowerManagementCapabilities
+      * SystemCreationClassName
+      * SystemName
+      * CurrentClockSpeed
+      * Family
+      * OtherFamilyDescription
+      * Role
+      * Stepping
+      * UniqueId
+      * UpgradeMethod
+      * Architecture
+      * AssetTag
+      * Characteristics
+      * L3CacheSize
+      * L3CacheSpeed
+      * Level
+      * Manufacturer
+      * NumberOfCores
+      * NumberOfEnabledCore
+      * NumberOfLogicalProcessors
+      * PartNumber
+      * ProcessorId
+      * SecondLevelAddressTranslationExtensions
+      * SerialNumber
+      * ThreadCount
+      * VirtualizationFirmwareEnabled
+      * VMMonitorModeExtensions
+      * PSComputerName
+      * CimClass
+      * CimInstanceProperties
+      * CimSystemProperties
+
+- Raises
+   - **OSError**: Raised in case of error.
 
 ### volumes(*properties, **kwargs)->list: 
-Returns a list of all remote server volumes data.
+> Returns a list of all remote server volumes data.
+- Args
+   - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
+   - **\*\*kwargs**: Arbitrary keyword arguments. 
+
+- Keyword Args
+   - **raw** _(bool)_: Used to define whether or not to return the raw standard out instead of the default list of dictionaries.
+
+- Returns
+   - **list**: List of volumes. The standard out _string_ may be returned instead if **raw** is found in the _keyword arguments_ and equivalent to **True**.
+      - **dict**:
+          * Status
+          * Availability
+          * DeviceID
+          * StatusInfo
+          * Caption
+          * Description
+          * InstallDate
+          * Name
+          * ConfigManagerErrorCode
+          * ConfigManagerUserConfig
+          * CreationClassName
+          * ErrorCleared
+          * ErrorDescription
+          * LastErrorCode
+          * PNPDeviceID
+          * PowerManagementCapabilities
+          * PowerManagementSupported
+          * SystemCreationClassName
+          * SystemName
+          * Access
+          * BlockSize
+          * ErrorMethodology
+          * NumberOfBlocks
+          * Purpose
+          * FreeSpace
+          * Size
+          * Compressed
+          * DriveType
+          * FileSystem
+          * MaximumComponentLength
+          * MediaType
+          * ProviderName
+          * QuotasDisabled
+          * QuotasIncomplete
+          * QuotasRebuilding
+          * SupportsDiskQuotas
+          * SupportsFileBasedCompression
+          * VolumeDirty
+          * VolumeName
+          * VolumeSerialNumber
+          * PSComputerName
+          * CimClass
+          * CimInstanceProperties
+          * CimSystemProperties
+
+- Raises
+   - **OSError**: Raised in case of error.
 
 ### retrieve_data_from_ps_list(stdout:str)->list: 
 > Static method that converts standard powershell list to python list of dictionaries.
@@ -467,6 +809,3 @@ Returns a list of all remote server volumes data.
 - Returns
    - **list**: List of items.
       - **dict**: Item.
-
-## Dependencies
-- **winrm**: This class relies on the usage of winrm to connect to a remote server and run commands and powershell scripts on it.
