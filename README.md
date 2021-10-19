@@ -4,6 +4,9 @@
 - **winrm**: This class relies on the usage of winrm to connect to remote servers and run commands and powershell scripts on them.
 
 ## Methods
+
+[run](#runcmdstr-capture_errorboolfalse-str)
+
 ### run(cmd:_str_, capture_error:_bool_=False)->_str_:
 >Runs a windows command on the remote server.
 - Args:
