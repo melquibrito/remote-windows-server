@@ -1,13 +1,11 @@
 # Windows Remote Server Library
 
-class WindowsRemoteServer(builtins.object)
- |  WindowsRemoteServer(host: str, username: str, password: str, port: int = 5985)
- |
- |  This class defines a remote windows server connection session providing methods for running windows commands and powershell scripts alongside built-in methods for common tasks.
- |
- |  Methods
- |  -------
- |  - run(cmd:str, capture_error:bool=False)->str: Runs a windows command on the remote server.
+class WindowsRemoteServer()
+WindowsRemoteServer(host: str, username: str, password: str, port: int = 5985)
+This class defines a remote windows server connection session providing methods for running windows commands and powershell scripts alongside built-in methods for common tasks.
+Methods
+-------
+- run(cmd:str, capture_error:bool=False)->str: Runs a windows command on the remote server.
  |  - powershell(script:str, capture_error:bool=False)->str: Executes a powershell script on the remote server.
  |  - ping(host:str, packets:int=2)->bool: Pings a host from the remote server.
  |  - shut_down(force=False): Shuts down the remote server.
