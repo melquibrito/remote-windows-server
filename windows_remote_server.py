@@ -1,7 +1,7 @@
 import winrm
 
 class WindowsRemoteServer:
-    """This class defines a remote windows server connection session providing methods for running windows commands and powershell scripts alongside built-in methods for common tasks.
+    """This class defines a remote windows server connection session. It also provides methods for running windows commands and powershell scripts alongside built-in methods for common tasks.
 
     Methods
     -------
