@@ -230,6 +230,32 @@
       - Raises
          - **OSError**: Raised in case of error.
 
+      #### has(name:_str_)->_bool_:
+      > Checks if a service exists.
+
+      - Args
+         - **name** _(str)_: The name of a service.
+
+      - Returns
+         - **bool**: **True** if the service exists, **False** otherwise.
+      
+      #### output(\*include:_str_, \*\*kwargs)->_str_:
+      > Outputs a standard powershell table with the services. Default columns are **Status**, **Name** and **DisplayName**.
+
+      - Args
+         - **\*include**: Argument list of properties to include. Asterisks (\*) can be used as wildcards. Custom properties will be included to the right of DisplayName.
+         - **\*\*kwargs**: Arbitrary keyword arguments. 
+
+      - Keyword Args
+         - **sort** _(str|list|tuple)_: Used for specifying a sorting logic. As a _string_, it must match a property name. As a _list_ or _tuple_, the first element will define the property name to sort by and the second one will define the order. Consider **-1** or **'desc'** or **'descending'** for descending. Default order is ascending.
+         - **limit** _(int)_: Used for limiting the number of rows for the table.
+
+      - Returns
+         - **str**: Standard powershell table.
+
+      - Raises
+         - **OSError**: Raised in case of error.
+
 ### manage_processes()->_WindowsRemoteServer.\_\_ProcessManager_: 
 > Returns the process manager object for managing processes on the remote server.
 - Returns
@@ -325,10 +351,95 @@
          - **OSError**: Raised in case of error.
 
 ### bios(*properties:str, **kwargs)->dict: 
-Returns the remote server bios data.
+> Returns the remote server bios data.
+- Args
+   - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
+   - **\*\*kwargs**: Arbitrary keyword arguments. 
+
+- Keyword Args
+   - **raw** _(bool)_: Used to define whether or not to return the raw standard out instead of the default dictionary.
+
+- Returns
+   - **dict**: Bios data. The standard out _string_ may be returned instead if **raw** is found in the _keyword arguments_ and equivalent to **True**.
+      * Status
+      * Name
+      * Caption
+      * SMBIOSPresent
+      * Description
+      * InstallDate
+      * BuildNumber
+      * CodeSet
+      * IdentificationCode
+      * LanguageEdition
+      * Manufacturer
+      * OtherTargetOS
+      * SerialNumber
+      * SoftwareElementID
+      * SoftwareElementState
+      * TargetOperatingSystem
+      * Version
+      * PrimaryBIOS
+      * BiosCharacteristics
+      * BIOSVersion
+      * CurrentLanguage
+      * EmbeddedControllerMajorVersion
+      * EmbeddedControllerMinorVersion
+      * InstallableLanguages
+      * ListOfLanguages
+      * ReleaseDate
+      * SMBIOSBIOSVersion
+      * SMBIOSMajorVersion
+      * SMBIOSMinorVersion
+      * SystemBiosMajorVersion
+      * SystemBiosMinorVersion
+      * PSComputerName
+      * CimClass
+      * CimInstanceProperties
+      * CimSystemProperties
+
+- Raises
+   - **OSError**: Raised in case of error.
 
 ### desktop_settings(*properties, **kwargs)->list: 
-Returns the remote server descktop settings data.
+> Returns the remote server descktop settings data.
+- Args
+   - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
+   - **\*\*kwargs**: Arbitrary keyword arguments. 
+
+- Keyword Args
+   - **raw** _(bool)_: Used to define whether or not to return the raw standard out instead of the default list of dictionaries.
+
+- Returns
+   - list: List of descktops settings. The standard out _string_ may be returned instead if **raw** is found in the _keyword arguments_ and equivalent to **True**.
+      - dict:
+          * Name
+          * ScreenSaverActive
+          * Caption
+          * Description
+          * SettingID
+          * BorderWidth
+          * CoolSwitch
+          * CursorBlinkRate
+          * DragFullWindows
+          * GridGranularity
+          * IconSpacing
+          * IconTitleFaceName
+          * IconTitleSize
+          * IconTitleWrap
+          * Pattern
+          * ScreenSaverExecutable
+          * ScreenSaverSecure
+          * ScreenSaverTimeout
+          * Wallpaper
+          * WallpaperStretched
+          * WallpaperTiled
+          * PSComputerName
+          * CimClass
+          * CimInstanceProperties
+          * CimSystemProperties
+
+- Raises
+   - **OSError**: Raised in case of error.
 
 ### computer_system(*properties,**kwargs)->dict: 
 Returns the remote server computer system data.
