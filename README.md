@@ -3,7 +3,7 @@
 ## Dependencies
 - **winrm**: This class relies on the usage of winrm to connect to remote servers and run commands and powershell scripts on them.
 
-## Methods
+## Resources
 
 * [run](#runcmdstr-capture_errorboolfalse-str)
 * [powershell](#powershellscriptstr-capture_errorboolfalse-str)
