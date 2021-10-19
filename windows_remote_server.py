@@ -8,8 +8,8 @@ class WindowsRemoteServer:
     - run(cmd:str, capture_error:bool=False)->str: Runs a windows command on the remote server.
     - powershell(script:str, capture_error:bool=False)->str: Executes a powershell script on the remote server.
     - ping(host:str, packets:int=2)->bool: Pings a host from the remote server.
-    - shut_down(force=False): Shuts down the remote server.
-    - restart(force=False): Restarts the remote server.
+    - shut_down(force:bool=False): Shuts down the remote server.
+    - restart(force:bool=False): Restarts the remote server.
     - manage_services()->WindowsRemoteServer.__ServiceManager: Returns the service manager object for managing services on the remote server.
     - manage_processes()->WindowsRemoteServer.__ProcessManager: Returns the process manager object for managing processes on the remote server.
     - bios(*properties:str, **kwargs)->dict: Returns the remote server bios data.
@@ -24,7 +24,7 @@ class WindowsRemoteServer:
 
     Dependencies
     ------------
-    - winrm: This class relies on the usage of winrm to connect to a remote server and run commands and powershell scripts on it.
+    - winrm: This class relies on the usage of winrm to connect to remote servers and run commands and powershell scripts on them.
     """
 
     def __init__(self, host:str, username:str, password:str, port:int=5985):
@@ -112,7 +112,7 @@ class WindowsRemoteServer:
         output = self.run(f'ping {host} -n {packets}')
         return '100% loss' not in output
 
-    def shut_down(self, force=False):
+    def shut_down(self, force:bool=False):
         """Shuts down the remote server.
 
         Args
@@ -128,7 +128,7 @@ class WindowsRemoteServer:
         self.powershell(f'Stop-Computer{forcing}')
         pass
 
-    def restart(self, force=False):
+    def restart(self, force:bool=False):
         """Restarts the remote server.
 
         Args
@@ -239,7 +239,7 @@ class WindowsRemoteServer:
         Returns
         -------
         - list: List of descktops settings. The standard out string may be returned instead if raw is found in the keyword arguments and equivalent to True.
-            - dict
+            - dict:
                 * Name
                 * ScreenSaverActive
                 * Caption
@@ -463,7 +463,7 @@ class WindowsRemoteServer:
 
         Args
         ----
-        - *properties (str): Properties to fetch - if none is found, all properties will be fetched.
+        - *properties (str): Argument list of properties to return. Asterisks (*) can be used as wildcards.
         - **kwargs: Arbitrary keyword arguments. 
 
         Keyword Args
@@ -501,7 +501,7 @@ class WindowsRemoteServer:
 
         Args
         ----
-        - *properties (str): Properties to fetch - if none is found, all properties will be fetched.
+        - *properties (str): Argument list of properties to return. Asterisks (*) can be used as wildcards.
         - **kwargs: Arbitrary keyword arguments. 
 
         Keyword Args
@@ -540,7 +540,7 @@ class WindowsRemoteServer:
 
         Args
         ----
-        - *properties (str): Properties to fetch - if none is found, all properties will be fetched.
+        - *properties (str): Argument list of properties to return. Asterisks (*) can be used as wildcards.
         - **kwargs: Arbitrary keyword arguments. 
 
         Keyword Args
@@ -626,7 +626,7 @@ class WindowsRemoteServer:
 
         Args
         ----
-        - *properties (str): Properties to fetch - if none is found, all properties will be fetched.
+        - *properties (str): Argument list of properties to return. Asterisks (*) can be used as wildcards.
         - **kwargs: Arbitrary keyword arguments. 
 
         Keyword Args
@@ -721,6 +721,12 @@ class WindowsRemoteServer:
 
         Methods
         -------
+        - stop_by_id(*ids, **kwargs): Stops processes by their ids.
+        - stop_by_name(*names:str, **kwargs): Stops processes by their names.
+        - stop_all_not_responding(force:bool=False): Stops all not-responding processes.
+        - start(file_path:str, **kwargs)->str: Starts a process.
+        - get_extention_verbs(ext:str)->list: Retrieves a list of verbs available for a given extention.
+        - output(*include:str, **kwargs)->str: Outputs a standard powershell table with the processes.
         """
 
         def __init__(self, server:'WindowsRemoteServer'):
@@ -771,7 +777,7 @@ class WindowsRemoteServer:
             self.__server.powershell(f'Stop-Process -Name {processes}{forcing}')
             pass
         
-        def stop_all_not_responding(self, force=False):
+        def stop_all_not_responding(self, force:bool=False):
             """Stops all not-responding processes.
 
             Args
@@ -793,13 +799,13 @@ class WindowsRemoteServer:
 
             Args
             ----
-            - file_path: Specifies the path and filename of the program that runs in the process. Enter the name of an executable file or of a document, such as a .txt or .doc file, that is associated with a program on the computer. If you specify only a filename, use the working_directory keyword argument to specify the path.
+            - file_path (str): Specifies the path and filename of the program that runs in the process. Enter the name of an executable file or of a document, such as a .txt or .doc file, that is associated with a program on the computer. If you specify only a filename, use the working_directory keyword argument to specify the path.
             - **kwargs: Arbitrary keyword arguments. 
 
             Keyword Args
             ------------
             - args (list|tuple): Specifies parameters or parameter values to use when this method starts the process
-            - working_directory (str):
+            - working_directory (str): Specifies the location that the new process should start in. The default is the location of the executable file or document being started. Wildcards are not supported. The path name must not contain characters that would be interpreted as wildcards.
             - verb (str): Specifies a verb to use when starting the process. The verbs that are available are determined by the filename extension of the file that runs in the process.
             - redirect_stdin (str): Specifies a file for reading input from it. Enter the path and filename of the input file.
             - redirect_stdout (str): Specifies a file to send the output generated by the process to. Enter the path and filename. By default, the output is returned as a string.
@@ -880,7 +886,7 @@ class WindowsRemoteServer:
 
             Returns
             -------
-            - list <str>: List of verbs available for the given extention.
+            - list: List of verbs available for the given extention.
 
             Raises
             ------
@@ -973,9 +979,9 @@ class WindowsRemoteServer:
 
         Methods
         -------
-        get(name:str)->WindowsRemoteServer.__ServiceManager.__Service
-        has(name:str)->bool
-        output(*include:str, **kwargs)->str
+        - get(name:str)->WindowsRemoteServer.__ServiceManager.__Service: Gets a service instance object by its name.
+        - has(name:str)->bool: Checks if a service exists.
+        - output(*include:str, **kwargs)->str: Outputs a standard powershell table with the services.
         """
 
         def __init__(self, server:'WindowsRemoteServer'):
@@ -1001,8 +1007,8 @@ class WindowsRemoteServer:
             self.__server.powershell(f'gsv -Name "{name}"') #This is to verify the service existance.
             return self.__Service(self.__server, name)
         
-        def has(self, name:str):
-            """Verifies a service.
+        def has(self, name:str)->bool:
+            """Checks if a service exists.
 
             Args
             ----
@@ -1122,7 +1128,7 @@ class WindowsRemoteServer:
                 self.__server.powershell(f'Start-Service -Name {self.__name}')
                 pass
             
-            def stop(self, force=False):
+            def stop(self, force:bool=False):
                 """Stops the service.
 
                 Args
@@ -1149,7 +1155,7 @@ class WindowsRemoteServer:
                 self.__server.powershell(f'Suspend-Service -Name {self.__name}')
                 pass
 
-            def restart(self, force=False):
+            def restart(self, force:bool=False):
                 """Restarts the service.
 
                 Args
@@ -1180,7 +1186,7 @@ class WindowsRemoteServer:
                 """Returns the service current status.
 
                 Returns
-                ----
+                -------
                 - str: Current status.
 
                 Raises
@@ -1194,7 +1200,7 @@ class WindowsRemoteServer:
                 """Returns the service name.
 
                 Returns
-                ----
+                -------
                 - str: Service name.
 
                 Raises
@@ -1208,7 +1214,7 @@ class WindowsRemoteServer:
                 """Checks if the service is running.
 
                 Returns
-                ----
+                -------
                 - bool: True if the service is running, otherwise, False.
 
                 Raises
@@ -1222,7 +1228,7 @@ class WindowsRemoteServer:
                 """Checks if the service is stopped.
 
                 Returns
-                ----
+                -------
                 - bool: True if the service is stopped, otherwise, False.
 
                 Raises
@@ -1236,7 +1242,7 @@ class WindowsRemoteServer:
                 """Checks if the service is paused.
 
                 Returns
-                ----
+                -------
                 - bool: True if the service is paused, otherwise, False.
 
                 Raises
@@ -1250,7 +1256,7 @@ class WindowsRemoteServer:
                 """Returns a list of service names that is required by this service.
 
                 Returns
-                ----
+                -------
                 - list: List of service names that is required by this service.
 
                 Raises
@@ -1265,7 +1271,7 @@ class WindowsRemoteServer:
                 """Returns a list of service names that depends on this service.
 
                 Returns
-                ----
+                -------
                 - list: List of service names that depends on this service.
 
                 Raises
@@ -1281,7 +1287,7 @@ class WindowsRemoteServer:
                 """Returns the display name.
 
                 Returns
-                ----
+                -------
                 - str: Display name.
 
                 Raises
@@ -1295,7 +1301,7 @@ class WindowsRemoteServer:
                 """Returns the service type.
 
                 Returns
-                ----
+                -------
                 - str: Service type.
 
                 Raises
@@ -1309,7 +1315,7 @@ class WindowsRemoteServer:
                 """Returns the startup type.
 
                 Returns
-                ----
+                -------
                 - str: Startup type.
 
                 Raises
@@ -1330,6 +1336,10 @@ class WindowsRemoteServer:
                     * Automatic;
                     * Manual;
                     * Disabled.
+
+                Raises
+                ------
+                - OSError: Raised in case of error.
                 """
                 self.__server.powershell(f'Set-Service -Name "{self.__name}" -StartupType {type}')
                 pass
