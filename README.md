@@ -15,15 +15,43 @@ Runs a windows command on the remote server.
 
 ### powershell(script:_str_, capture_error:_bool_=False)->_str_:
 Executes a powershell script on the remote server.
+   - Args
+      - **script** _(str)_: Powershell script to be executed.
+      - **capture_error** _(bool)_: **False** by default - if set to **True**, any error resulted from the execution of the powershell script is raised instead.
 
-### ping(host:str, packets:int=2)->bool: 
+   - Returns
+      - str: Standard out or standard error in case of error when **capture_error** is **True**.
+
+   - Raises
+      - **OSError**: Raised when the resulted status code is different than **0**_(zero)_ and **capture_error** is **False**.
+
+### ping(host:_str_, packets:_int_=2)->_bool_: 
 Pings a host from the remote server.
+   - Args
+      - **host** _(str)_: IP address to ping.
+      - **packets** _(int)_: Quantity of packets to send. 2 by default. 
+
+   - Returns
+      - **bool**: **False** if all packets sent are lost, **True** otherwise.
+
+   - Raises
+      - **OSError**: Raised when the resulted status code is different than **0**_(zero)_.
 
 ### shut_down(force=False): 
 Shuts down the remote server.
+   - Args
+      - **force** _(bool)_: **False** by default - if set to **True**, the process will be forced.
+
+   - Raises
+      - **OSError**: Raised when the resulted status code is different than **0**_(zero)_.
 
 ### restart(force=False): 
 Restarts the remote server.
+   - Args
+      - **force** _(bool)_: **False** by default - if set to **True**, the process will be forced.
+
+   - Raises
+      - **OSError**: Raised when the resulted status code is different than **0**_(zero)_.
 
 ### manage_services()->WindowsRemoteServer.__ServiceManager: 
 Returns the service manager object for managing services on the remote server.
