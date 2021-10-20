@@ -71,7 +71,7 @@ server = RemoteWindowsServer("255.255.10.10", "user", "passward")
 >Runs a windows command on the remote server.
 - Args:
    - **cmd** *(str)*: Windows command to be executed.
-   - **capture_error** *(bool)*: **False** by default, if set to **True**, any error resulted from the execution of the windows command is raised instead.
+   - **capture_error** *(bool)*: **False** by default, if set to **True**, standard error will be returned in case of error.
 
 - Returns
    - **str**: Standard out or standard error in case of error when **capture_error** is **True**.
@@ -83,7 +83,7 @@ server = RemoteWindowsServer("255.255.10.10", "user", "passward")
 > Executes a powershell script on the remote server.
 - Args
    - **script** _(str)_: Powershell script to be executed.
-   - **capture_error** _(bool)_: **False** by default - if set to **True**, any error resulted from the execution of the powershell script is raised instead.
+   - **capture_error** _(bool)_: **False** by default - if set to **True**, standard error will be returned in case of error.
 
 - Returns
    - str: Standard out or standard error in case of error when **capture_error** is **True**.
