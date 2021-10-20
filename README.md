@@ -1,4 +1,4 @@
-# Windows Remote Server Library
+# Remote Windows Server Library
 
 ## Description
 This library provides a class with handy methods for running windows commands, executing powershell scripts, managing services, managing processes and getting information on windows remote servers.
