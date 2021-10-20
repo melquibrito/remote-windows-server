@@ -18,7 +18,7 @@ from rwin import RemoteWindowsServer
 server = RemoteWindowsServer("255.255.10.10","user", "passward")
 ```
 ## Dependencies
-- **winrm**: This library relies on the usage of winrm to connect to remote servers and run commands and powershell scripts on them.
+- [**winrm**](https://docs.microsoft.com/en-us/windows/win32/winrm/portal): This library relies on the usage of winrm to connect to remote servers and run commands and powershell scripts on them.
 
 ## Resources
 
