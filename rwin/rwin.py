@@ -6,21 +6,21 @@ class RemoteWindowsServer:
 
     Methods
     -------
-    - run(cmd:str, capture_error:bool=False)->str: Runs a windows command on the remote server.
+    - run(cmd:str, capture_error:bool=False)->str: Runs a windows command on the server.
     - powershell(script:str, capture_error:bool=False)->str: Executes a powershell script on the remote server.
-    - ping(host:str, packets:int=2)->bool: Pings a host from the remote server.
-    - shut_down(force:bool=False): Shuts down the remote server.
-    - restart(force:bool=False): Restarts the remote server.
-    - manage_services()->RemoteWindowsServer.__ServiceManager: Returns the service manager object for managing services on the remote server.
-    - manage_processes()->RemoteWindowsServer.__ProcessManager: Returns the process manager object for managing processes on the remote server.
-    - bios(*properties:str, **kwargs)->dict: Returns the remote server bios data.
-    - desktop_settings(*properties, **kwargs)->list: Returns the remote server descktop settings data.
-    - computer_system(*properties,**kwargs)->dict: Returns the remote server computer system data.
-    - operating_system(*properties, **kwargs)->dict: Returns the remote server operating system data.
-    - logon_session(*properties, **kwargs)->dict: Returns the remote server logon session data.
-    - local_time(*properties, **kwargs)->dict: Returns the current local time data on the remote server.
-    - processor(*properties, **kwargs)->dict: Returns the remote server processor data.
-    - volumes(*properties, **kwargs)->list: Returns a list of all remote server volumes data.
+    - ping(host:str, packets:int=2)->bool: Pings a host from the server.
+    - shut_down(force:bool=False): Shuts down the server.
+    - restart(force:bool=False): Restarts the server.
+    - manage_services()->RemoteWindowsServer.__ServiceManager: Returns the service manager object for managing services on the server.
+    - manage_processes()->RemoteWindowsServer.__ProcessManager: Returns the process manager object for managing processes on the server.
+    - bios(*properties:str, **kwargs)->dict: Returns a dictionary with bios data.
+    - desktop_settings(*properties, **kwargs)->list: Returns a list of dictionaries with all descktops settings.
+    - computer_system(*properties,**kwargs)->dict: Returns a dictionary with information about the computer system.
+    - operating_system(*properties, **kwargs)->dict: Returns a dictionary with information about the OS installed.
+    - logon_session(*properties, **kwargs)->dict: Returns a dictionary with information about the current logon session.
+    - local_time(*properties, **kwargs)->dict: Returns a dictionary with current local time data.
+    - processor(*properties, **kwargs)->dict: Returns a dictionary with information about the processor.
+    - volumes(*properties, **kwargs)->list: Returns a list of dictionaries with all volumes available or connected to the server.
     - retrieve_data_from_ps_list(stdout:str)->list: Static method that converts standard powershell list to python list of dictionaries.
 
     Dependencies
@@ -43,7 +43,7 @@ class RemoteWindowsServer:
         pass
  
     def run(self, cmd:str, capture_error:bool=False)->str:
-        """Runs a windows command on the remote server.
+        """Runs a windows command on the server.
 
         Args
         ----
@@ -69,7 +69,7 @@ class RemoteWindowsServer:
             raise OSError(res.std_err.decode().strip())
     
     def powershell(self, script:str, capture_error:bool=False)->str:
-        """Executes a powershell script on the remote server.
+        """Executes a powershell script on the server.
 
         Args
         ----
@@ -95,7 +95,7 @@ class RemoteWindowsServer:
             raise OSError(res.std_err.decode().strip())
     
     def ping(self, host:str, packets:int=2)->bool:
-        """Pings a host from the remote server.
+        """Pings a host from the server.
 
         Args
         ----
@@ -115,7 +115,7 @@ class RemoteWindowsServer:
         return '100% loss' not in output
 
     def shut_down(self, force:bool=False):
-        """Shuts down the remote server.
+        """Shuts down the server.
 
         Args
         ----
@@ -131,7 +131,7 @@ class RemoteWindowsServer:
         pass
 
     def restart(self, force:bool=False):
-        """Restarts the remote server.
+        """Restarts the server.
 
         Args
         ----
@@ -147,7 +147,7 @@ class RemoteWindowsServer:
         pass
 
     def manage_services(self)->'RemoteWindowsServer.__ServiceManager':
-        """Returns the service manager object for managing services on the remote server.
+        """Returns the service manager object for managing services on the server.
 
         Returns
         -------
@@ -157,7 +157,7 @@ class RemoteWindowsServer:
         return self.__service_manager
 
     def manage_processes(self)->'RemoteWindowsServer.__ProcessManager':
-        """Returns the process manager object for managing processes on the remote server.
+        """Returns the process manager object for managing processes on the server.
 
         Returns
         -------
@@ -167,7 +167,7 @@ class RemoteWindowsServer:
         return self.__process_manager
 
     def bios(self, *properties:str, **kwargs)->dict:
-        """Remote server bios data.
+        """Returns a dictionary with bios data.
 
         Args
         ----
@@ -227,7 +227,7 @@ class RemoteWindowsServer:
         return data if raw else data[0]
     
     def desktop_settings(self, *properties, **kwargs)->list:
-        """Remote server descktop settings data.
+        """Returns a list of dictionaries with all descktops settings.
 
         Args
         ----
@@ -276,7 +276,7 @@ class RemoteWindowsServer:
         return self.__get_cim_instance('Win32_Desktop', properties, kwargs.get('raw'))
 
     def computer_system(self, *properties,**kwargs)->dict:
-        """Remote server computer system data.
+        """Returns a dictionary with information about the computer system.
 
         Args
         ----
@@ -369,7 +369,7 @@ class RemoteWindowsServer:
         return data if raw else data[0]
 
     def operating_system(self, *properties, **kwargs)->dict:
-        """Remote server operating system data.
+        """Returns a dictionary with information about the OS installed.
 
         Args
         ----
@@ -461,7 +461,7 @@ class RemoteWindowsServer:
         return data if raw else data[0]
     
     def logon_session(self, *properties, **kwargs)->dict:
-        """Remote server logon session data.
+        """Returns a dictionary with information about the current logon session.
 
         Args
         ----
@@ -499,7 +499,7 @@ class RemoteWindowsServer:
         return data if raw else data[0]
     
     def local_time(self, *properties, **kwargs)->dict:
-        """Current local time data on the remote server.
+        """Returns a dictionary with current local time data.
 
         Args
         ----
@@ -538,7 +538,7 @@ class RemoteWindowsServer:
         return data if raw else data[0]
     
     def processor(self, *properties, **kwargs)->dict:
-        """Remote server processor data.
+        """Returns a dictionary with information about the processor.
 
         Args
         ----
@@ -624,7 +624,7 @@ class RemoteWindowsServer:
         return data if raw else data[0]
     
     def volumes(self, *properties, **kwargs)->list:
-        """Remote server volumes data.
+        """Returns a list of dictionaries with all volumes available or connected to the server.
 
         Args
         ----
@@ -696,18 +696,6 @@ class RemoteWindowsServer:
         properties = '*' if len(properties)==0 else ' -Property ' + ','.join([f'"{prop}"' for prop in properties])
         stdout = self.powershell(f'Get-CimInstance -ClassName {name} | Format-List {properties}')
         return stdout if raw else self.retrieve_data_from_ps_list(stdout)
-    
-    def __get_disk_type(n)->str:
-        TYPE = {
-            '0':'Unknown',
-            '1':'NoRootDirectory',
-            '2':'Removable',
-            '3':'Fixed',
-            '4':'Network',
-            '5':'CDRom',
-            '6':'Ram',
-        }
-        return TYPE.get(str(n)) or 'Unknown'
     
     def __dict__(self)->dict:
         return self.computer_system(raw=False)
