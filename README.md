@@ -5,8 +5,8 @@ This library provides a class with handy methods for running windows commands, e
 
 ### Establishing a connection
 ``` python
-from windows_remote_server import WindowsRemoteServer
-server = WindowsRemoteServer("255.255.10.10", "user", "passward")
+from rwin import RemoteWindowsServer
+server = RemoteWindowsServer("255.255.10.10", "user", "passward")
 ```
 ## Dependencies
 - **winrm**: This library relies on the usage of winrm to connect to remote servers and run commands and powershell scripts on them.
@@ -18,8 +18,8 @@ server = WindowsRemoteServer("255.255.10.10", "user", "passward")
 * [ping](#pinghoststr-packetsint2-bool)
 * [shut_down](#pinghoststr-packetsint2-bool)
 * [restart](#restartforceboolfalse)
-* [manage_services](#manage_services-windowsremoteserver__servicemanager)
-   * [get](#getnamestr-windowsremoteserver__servicemanager__service)
+* [manage_services](#manage_services-RemoteWindowsServer__servicemanager)
+   * [get](#getnamestr-RemoteWindowsServer__servicemanager__service)
       * [start](#start)
       * [stop](#stopforceboolfalse)
       * [suspend](#suspend)
@@ -41,7 +41,7 @@ server = WindowsRemoteServer("255.255.10.10", "user", "passward")
       * [can_shut_down](#can_shut_down-bool)
    * [has](#hasnamestr-bool)
    * [output](#outputincludestr-kwargs-str) 
-* [manage_processes](#manage_processes-windowsremoteserver__processmanager)
+* [manage_processes](#manage_processes-RemoteWindowsServer__processmanager)
    * [stop_by_id](#stop_by_idids-kwargs) 
    * [stop_by_name](#stop_by_namenamesstr-kwargs) 
    * [stop_all_not_responding](#stop_all_not_respondingforceboolfalse) 
@@ -110,18 +110,18 @@ server = WindowsRemoteServer("255.255.10.10", "user", "passward")
 - Raises
    - **OSError**: Raised when the resulted status code is different than **0**_(zero)_.
 
-### manage_services()->_WindowsRemoteServer.\_\_ServiceManager_: 
+### manage_services()->_RemoteWindowsServer.\_\_ServiceManager_: 
 > Returns the service manager object for managing services on the remote server.
 - Returns
-   - **WindowsRemoteServer.\_\_ServiceManager**: Service manager object.
-      #### get(name:_str_)->_WindowsRemoteServer.\_\_ServiceManager.\_\_Service_:
+   - **RemoteWindowsServer.\_\_ServiceManager**: Service manager object.
+      #### get(name:_str_)->_RemoteWindowsServer.\_\_ServiceManager.\_\_Service_:
       > Gets a service instance object by its name.
 
       - Args
          - **name** _(str)_: Name of the service to get.
 
       - Returns
-         - **WindowsRemoteServer.\_\_ServiceManager.\_\_Service**: Service instance object.
+         - **RemoteWindowsServer.\_\_ServiceManager.\_\_Service**: Service instance object.
             #### start():
             > Starts the service.
 
@@ -313,10 +313,10 @@ server = WindowsRemoteServer("255.255.10.10", "user", "passward")
       - Raises
          - **OSError**: Raised in case of error.
 
-### manage_processes()->_WindowsRemoteServer.\_\_ProcessManager_: 
+### manage_processes()->_RemoteWindowsServer.\_\_ProcessManager_: 
 > Returns the process manager object for managing processes on the remote server.
 - Returns
-   - **WindowsRemoteServer.\_\_ProcessManager**: Process manager object.
+   - **RemoteWindowsServer.\_\_ProcessManager**: Process manager object.
       #### stop_by_id(\*ids, \*\*kwargs):
       > Stops processes by their ids.
       - Args
