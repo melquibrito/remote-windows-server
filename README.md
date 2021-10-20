@@ -8,6 +8,7 @@ This library provides a class with handy methods for running windows commands, e
 ```
 pip install rwin
 ```
+> All [dependencies](#dependencies) are installed automatically if not found.
 2. Importing:
 ``` python
 from rwin import RemoteWindowsServer
