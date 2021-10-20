@@ -872,3 +872,9 @@ server = RemoteWindowsServer("255.255.10.10", "user", "passward")
 - Returns
    - **list**: List of items.
       - **dict**: Item.
+
+## Author
+* [Melqui Brito](https://github.com/melquibrito)
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for more details.
