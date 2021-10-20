@@ -417,7 +417,7 @@ server = RemoteWindowsServer("255.255.10.10","user", "passward")
          - **OSError**: Raised in case of error.
 
 ### bios(\*properties:_str_, \*\*kwargs)->_dict_: 
-> Returns the remote server bios data.
+> Returns a dictionary with bios data.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
    - **\*\*kwargs**: Arbitrary keyword arguments. 
@@ -467,7 +467,7 @@ server = RemoteWindowsServer("255.255.10.10","user", "passward")
    - **OSError**: Raised in case of error.
 
 ### desktop_settings(\*properties:_str_, \*\*kwargs)->_list_: 
-> Returns the remote server descktop settings data.
+> Returns a list of dictionaries with all descktops settings.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
    - **\*\*kwargs**: Arbitrary keyword arguments. 
@@ -508,7 +508,7 @@ server = RemoteWindowsServer("255.255.10.10","user", "passward")
    - **OSError**: Raised in case of error.
 
 ### computer_system(\*properties:_str_,\*\*kwargs)->_dict_: 
-> Returns the remote server computer system data.
+> Returns a dictionary with information about the computer system.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
    - **\*\*kwargs**: Arbitrary keyword arguments. 
@@ -591,7 +591,7 @@ server = RemoteWindowsServer("255.255.10.10","user", "passward")
    - **OSError**: Raised in case of error.
 
 ### operating_system(\*properties:_str_, \*\*kwargs)->_dict_: 
-> Returns the remote server operating system data.
+> Returns a dictionary with information about the OS installed.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
    - **\*\*kwargs**: Arbitrary keyword arguments. 
@@ -672,7 +672,7 @@ server = RemoteWindowsServer("255.255.10.10","user", "passward")
    - **OSError**: Raised in case of error.
 
 ### logon_session(\*properties:_str_, \*\*kwargs)->_dict_: 
-> Returns the remote server logon session data.
+> Returns a dictionary with information about the current logon session.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
    - **\*\*kwargs**: Arbitrary keyword arguments. 
@@ -700,7 +700,7 @@ server = RemoteWindowsServer("255.255.10.10","user", "passward")
    - **OSError**: Raised in case of error.
 
 ### local_time(\*properties:_str_, \*\*kwargs)->_dict_: 
-> Returns the current local time data on the remote server.
+> Returns a dictionary with current local time data.server.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
    - **\*\*kwargs**: Arbitrary keyword arguments. 
@@ -729,7 +729,7 @@ server = RemoteWindowsServer("255.255.10.10","user", "passward")
    - **OSError**: Raised in case of error.
 
 ### processor(\*properties:_str_, \*\*kwargs)->_dict_: 
-> Returns the remote server processor data.
+> Returns a dictionary with information about the processor.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
    - **\*\*kwargs**: Arbitrary keyword arguments. 
@@ -805,7 +805,7 @@ server = RemoteWindowsServer("255.255.10.10","user", "passward")
    - **OSError**: Raised in case of error.
 
 ### volumes(\*properties:_str_, \*\*kwargs)->_list_: 
-> Returns a list of all remote server volumes data.
+> Returns a list of dictionaries with all volumes available or connected to the server.
 - Args
    - **\*properties** _(str)_: Argument list of properties to return. Asterisks (\*) can be used as wildcards.
    - **\*\*kwargs**: Arbitrary keyword arguments. 
