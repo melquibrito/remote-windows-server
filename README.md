@@ -1,7 +1,15 @@
 # Windows Remote Server Library
 
+## Description
+This library provides a class with handy methods for running windows commands, executing powershell scripts, managing services, managing processes and getting information on a windows remote servers.
+
+### Establishing a connection
+``` python
+from windows_remote_server import WindowsRemoteServer
+server = WindowsRemoteServer("255.255.10.10", "user", "passward")
+```
 ## Dependencies
-- **winrm**: This class relies on the usage of winrm to connect to remote servers and run commands and powershell scripts on them.
+- **winrm**: This library relies on the usage of winrm to connect to remote servers and run commands and powershell scripts on them.
 
 ## Resources
 
