@@ -3,9 +3,17 @@
 ## Description
 This library provides a class with handy methods for running windows commands, executing powershell scripts, managing services, managing processes and getting information on windows remote servers.
 
-### Establishing a connection
+### Getting started
+1. Installing:
+```
+pip install rwin
+```
+2. Importing:
 ``` python
 from rwin import RemoteWindowsServer
+``` 
+3. Connecting to a remote windows server
+``` python
 server = RemoteWindowsServer("255.255.10.10", "user", "passward")
 ```
 ## Dependencies
