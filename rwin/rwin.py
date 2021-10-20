@@ -48,7 +48,7 @@ class RemoteWindowsServer:
         Args
         ----
         - cmd (str): Windows command to be executed.
-        - capture_error (bool): False by default, if set to True, any error resulted from the execution of the windows command is raised instead.
+        - capture_error (bool): False by default, if set to True, standard error will be returned in case of error.
 
         Returns
         -------
@@ -74,7 +74,7 @@ class RemoteWindowsServer:
         Args
         ----
         - script (str): Powershell script to be executed.
-        - capture_error (bool): False by default - if set to True, any error resulted from the execution of the powershell script is raised instead.
+        - capture_error (bool): False by default - if set to True, standard error will be returned in case of error.
 
         Returns
         -------
