@@ -28,9 +28,9 @@ class RemoteWindowsServer:
     - winrm: This class relies on the usage of winrm to connect to remote servers and run commands and powershell scripts on them.
     """
 
-    def __init__(self, host:str, username:str, password:str, port:int=5985):
+    def __init__(self, host:str, username:str, password:str, port:int=5985, **kwargs):
         logging.info(f'Establishing remote connection with {host}...')
-        self.__session = winrm.Session(f"http://{host}:{port}", auth=(username, password),transport='ntlm')
+        self.__session = winrm.Session(f"http://{host}:{port}", auth=(username, password),transport=kwargs.get('transport') or 'ntlm',server_cert_validation=kwargs.get('server_cert_validation'),proxy=kwargs.get('proxy'))
         try:
             self.__session.run_cmd("whoami")
             logging.info("Remote connection to the server was successful.")
@@ -701,7 +701,7 @@ class RemoteWindowsServer:
         return self.computer_system(raw=False)
     
     def __str__(self)->str:
-        return self.computer_system(raw=True)
+        return self.powershell('Systeminfo')
 
     def __getitem__(self, key):
         return self.computer_system(key, raw=False)[key]
