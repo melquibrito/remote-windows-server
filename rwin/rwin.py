@@ -1,3 +1,14 @@
+try:
+    import logging
+    class SuppressFilter(logging.Filter):
+        def filter(self, record):
+            return 'wsman' not in record.getMessage()
+
+    from urllib3.connectionpool import log
+    log.addFilter(SuppressFilter())
+except:
+    pass
+
 import winrm
 import logging
 
