@@ -45,9 +45,9 @@ class RemoteWindowsServer:
         try:
             self.__session.run_cmd("whoami")
             logging.info("Remote connection to the server was successful.")
-        except:
+        except Exception as e:
             logging.critical("Remote connection failed.")
-            raise ConnectionError(f"Remote connection to the server at {host} was unsuccessful.")
+            raise ConnectionError(f"Remote connection to the server at {host} was unsuccessful : {e}" )
 
         self.__process_manager = self.__ProcessManager(self)
         self.__service_manager = self.__ServiceManager(self)
