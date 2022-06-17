@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'rwin',
   packages = ['rwin'],
-  version = '1.0.4', 
+  version = '1.0.5', 
   license='MIT',
   description = 'This package provides a class with handy methods for running windows commands, executing powershell scripts, managing services, managing processes and getting information on windows remote servers.',
   author = 'Melquisedeque Brito de Lima',

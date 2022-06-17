@@ -73,11 +73,11 @@ class RemoteWindowsServer:
         res = self.__session.run_cmd(cmd)
         
         if res.status_code==0:
-            return res.std_out.decode().strip()
+            return res.std_out.decode('utf-8', 'ignore').strip()
         elif capture_error:
-            return res.std_err.decode().strip()
+            return res.std_err.decode('utf-8', 'ignore').strip()
         else:
-            raise OSError(res.std_err.decode().strip())
+            raise OSError(res.std_err.decode('utf-8', 'ignore').strip())
     
     def powershell(self, script:str, capture_error:bool=False)->str:
         """Executes a powershell script on the server.
@@ -99,11 +99,11 @@ class RemoteWindowsServer:
         res = self.__session.run_ps(script)
         
         if res.status_code==0:
-            return res.std_out.decode().strip()
+            return res.std_out.decode('utf-8', 'ignore').strip()
         elif capture_error:
-            return res.std_err.decode().strip()
+            return res.std_err.decode('utf-8', 'ignore').strip()
         else:
-            raise OSError(res.std_err.decode().strip())
+            raise OSError(res.std_err.decode('utf-8', 'ignore').strip())
     
     def ping(self, host:str, packets:int=2)->bool:
         """Pings a host from the server.
@@ -705,7 +705,7 @@ class RemoteWindowsServer:
 
     def __get_cim_instance(self, name:str, properties:tuple, raw=False)->dict:
         properties = '*' if len(properties)==0 else ' -Property ' + ','.join([f'"{prop}"' for prop in properties])
-        stdout = self.powershell(f'Get-CimInstance -ClassName {name} | Format-List {properties}')
+        stdout = self.powershell(f'Get-WmiObject -ClassName {name} | Format-List {properties}')
         return stdout if raw else self.retrieve_data_from_ps_list(stdout)
     
     def __dict__(self)->dict:
